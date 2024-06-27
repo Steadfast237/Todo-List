@@ -49,9 +49,16 @@ export function loadData() {
   });
 }
 
-export function toggleForm(button, form) {
+export function toggleForm(button, input, form) {
   form.classList.toggle('hidden');
   button.classList.toggle('hidden');
+  input.value = '';
+}
+
+export function resetForm(button, input, form) {
+  button.classList.remove('hidden');
+  form.classList.add('hidden');
+  input.value = '';
 }
 
 // setInputToContentSize = () => {

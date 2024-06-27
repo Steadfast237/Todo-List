@@ -1,6 +1,6 @@
 import Project from '../classes/project';
 import TaskController from './taskController';
-import { saveData, toggleForm } from '../assets';
+import { saveData, toggleForm, resetForm } from '../assets';
 
 class ProjectController {
   #todo = undefined;
@@ -22,17 +22,42 @@ class ProjectController {
     this.#formContainer.addEventListener('click', (e) => {
       if (e.target.tagName !== 'BUTTON' || e.target.type !== 'button') return;
       toggleForm(
-        this.#form,
-        document.querySelector('aside .form-container > button')
+        document.querySelector('aside .form-container > button'),
+        this.#form.elements[0],
+        this.#form
       );
-      this.#form.elements[0].value = '';
     });
 
-    this.#defaultList.addEventListener('click', this.updateActiveProject);
+    this.#defaultList.addEventListener('click', (e) => {
+      const target = e.target;
+
+      this.updateActiveProject(e);
+
+      resetForm(
+        document.querySelector('.content .form-container > button'),
+        document.querySelector('.content form').elements[0],
+        document.querySelector('.content form')
+      );
+
+      if (
+        target.tagName === 'BUTTON' &&
+        (target.dataset.index === '1' || target.dataset.index === '2')
+      ) {
+        document
+          .querySelector('.content .form-container > button')
+          .classList.add('hidden');
+      }
+    });
+
     this.#dynamicList.addEventListener('click', (e) => {
       this.updateActiveProject(e);
       this.deleteProjectFromList(e);
       this.changeProjectName(e);
+      resetForm(
+        document.querySelector('.content .form-container > button'),
+        document.querySelector('.content form').elements[0],
+        document.querySelector('.content form')
+      );
     });
   }
 

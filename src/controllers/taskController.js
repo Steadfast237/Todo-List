@@ -19,8 +19,9 @@ class TaskController {
     this.#formContainer.addEventListener('click', (e) => {
       if (e.target.tagName !== 'BUTTON' || e.target.type !== 'button') return;
       toggleForm(
-        this.#form,
-        document.querySelector('.content .form-container > button')
+        document.querySelector('.content .form-container > button'),
+        this.#form.elements[0],
+        this.#form
       );
       this.#form.elements[0].value = '';
     });
