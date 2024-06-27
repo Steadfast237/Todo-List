@@ -33,27 +33,26 @@ class TaskController {
   }
 
   updateActiveProject = (project) => {
+    if (!project) {
+      this.#projectName.textContent = '';
+      this.#taskList.innerHTML = '';
+      document
+        .querySelector('.content .form-container > button')
+        .classList.add('hidden');
+      return;
+    }
+
     this.#activeProject = project;
     this.updateProjectName(this.#activeProject);
     this.updateProjectTaskList(this.#activeProject);
   };
 
   updateProjectName = (project) => {
-    if (!project) {
-      this.#projectName.textContent = '';
-      return;
-    }
-
     this.#projectName.textContent = '';
     this.#projectName.textContent = project.name;
   };
 
   updateProjectTaskList = (project) => {
-    if (!project) {
-      this.#taskList.innerHTML = '';
-      return;
-    }
-
     let markup = '';
 
     project.taskList.forEach((task, index) => {

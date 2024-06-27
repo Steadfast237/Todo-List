@@ -1,6 +1,11 @@
 import Project from '../classes/project';
 import TaskController from './taskController';
-import { saveData, toggleForm, resetForm } from '../assets';
+import {
+  saveData,
+  toggleForm,
+  resetForm,
+  setInputToContentSize,
+} from '../assets';
 
 class ProjectController {
   #todo = undefined;
@@ -33,12 +38,6 @@ class ProjectController {
 
       this.updateActiveProject(e);
 
-      resetForm(
-        document.querySelector('.content .form-container > button'),
-        document.querySelector('.content form').elements[0],
-        document.querySelector('.content form')
-      );
-
       if (
         target.tagName === 'BUTTON' &&
         (target.dataset.index === '1' || target.dataset.index === '2')
@@ -46,6 +45,7 @@ class ProjectController {
         document
           .querySelector('.content .form-container > button')
           .classList.add('hidden');
+        console.log('logic not yet implemented smile :)');
       }
     });
 
@@ -53,11 +53,6 @@ class ProjectController {
       this.updateActiveProject(e);
       this.deleteProjectFromList(e);
       this.changeProjectName(e);
-      resetForm(
-        document.querySelector('.content .form-container > button'),
-        document.querySelector('.content form').elements[0],
-        document.querySelector('.content form')
-      );
     });
   }
 
@@ -71,6 +66,12 @@ class ProjectController {
     this.#activeProject.classList.remove('active');
     this.#activeProject = e.target;
     this.#activeProject.classList.add('active');
+
+    resetForm(
+      document.querySelector('.content .form-container > button'),
+      document.querySelector('.content form').elements[0],
+      document.querySelector('.content form')
+    );
   };
 
   addProjectToList = (e) => {
@@ -109,6 +110,7 @@ class ProjectController {
       });
 
     this.#dynamicList.innerHTML = markup;
+    setInputToContentSize(document.querySelectorAll('.dynamic-projects input'));
   };
 
   deleteProjectFromList = (e) => {

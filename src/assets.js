@@ -61,10 +61,10 @@ export function resetForm(button, input, form) {
   input.value = '';
 }
 
-// setInputToContentSize = () => {
-//   document.querySelectorAll('.project-list input').forEach((input) => {
-//     input.style.width = input.value.length + 'ch';
-//   });
-// };
+export function setInputToContentSize(list) {
+  list.forEach((input) => {
+    input.style.width = input.value.length + 'ch';
+  });
+}
 
-export default { saveData, loadData, toggleForm };
+export default { saveData, loadData, toggleForm, setInputToContentSize };
