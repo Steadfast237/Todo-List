@@ -42,24 +42,26 @@
 
             <ul class="dynamic-projects"></ul>
 
-            <!-- <button type="button">
-              <i class="las la-plus"></i>Add Project
-            </button> -->
+            <div class="form-container">
+              <button type="button">
+                <i class="las la-plus"></i>Add Project
+              </button>
 
-            <form>
-              <input
-                type="text"
-                name="project-name"
-                id="project-name"
-                placeholder="Project name"
-                required
-              />
+              <form class="hidden">
+                <input
+                  type="text"
+                  name="project-name"
+                  id="project-name"
+                  placeholder="Project name"
+                  required
+                />
 
-              <div class="form-actions">
-                <button type="submit">Add</button>
-                <!-- <button type="button">Cancel</button> -->
-              </div>
-            </form>
+                <div class="form-actions">
+                  <button type="submit">Add</button>
+                  <button type="button">Cancel</button>
+                </div>
+              </form>
+            </div>
           </div>
         </aside>
 
@@ -68,30 +70,34 @@
 
           <ul class="task-list"></ul>
 
-          <!-- <button type="button" data-action="add">
-            <i class="las la-plus"></i>Add Task
-          </button> -->
+          <div class="form-container">
+            <button type="button" data-action="add">
+              <i class="las la-plus"></i>Add Task
+            </button>
 
-          <form>
-            <input
-              type="text"
-              name="task-name"
-              id="task-name"
-              placeholder="Task name"
-              required
-            />
+            <form class="hidden">
+              <input
+                type="text"
+                name="task-name"
+                id="task-name"
+                placeholder="Task name"
+                required
+              />
 
-            <div class="form-actions">
-              <button type="submit">Add</button>
-              <!-- <button type="button" data-action="cancel">Cancel</button> -->
-            </div>
-          </form>
+              <div class="form-actions">
+                <button type="submit">Add</button>
+                <button type="button" data-action="cancel">Cancel</button>
+              </div>
+            </form>
+          </div>
         </div>
       </main>
 
       <footer class="footer">
         Created by Silidje Moket.
-        <a href="#" target="_blank">View Code on GitHub</a>
+        <a href="https://github.com/Steadfast237/Todo-List" target="_blank"
+          >View Code on GitHub</a
+        >
       </footer>
     </div>
   </body>

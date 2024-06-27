@@ -67,6 +67,7 @@ body {
     font-size: 100%;
     font-weight: 700;
     font-family: inherit;
+    width: 100%;
   }
 
   input:read-only {

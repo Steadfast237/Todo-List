@@ -1,19 +1,29 @@
 import { format } from 'date-fns';
 import Task from '../classes/task';
-import { saveData } from '../assets';
+import { saveData, toggleForm } from '../assets';
 
 class TaskController {
   #activeProject = undefined;
   #projectName = document.querySelector('.content h2');
   #taskList = document.querySelector('.task-list');
   #form = document.querySelector('.content form');
+  #formContainer = document.querySelector('.content .form-container');
 
   constructor(project) {
     this.#activeProject = project;
 
     this.updateProjectName(this.#activeProject);
     this.updateProjectTaskList(this.#activeProject);
+
     this.#form.addEventListener('submit', this.addTaskToProject);
+    this.#formContainer.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'BUTTON' || e.target.type !== 'button') return;
+      toggleForm(
+        this.#form,
+        document.querySelector('.content .form-container > button')
+      );
+      this.#form.elements[0].value = '';
+    });
 
     this.#taskList.addEventListener('click', (e) => {
       this.deleteTaskFromList(e);

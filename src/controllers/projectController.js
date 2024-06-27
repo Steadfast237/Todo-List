@@ -1,11 +1,12 @@
 import Project from '../classes/project';
 import TaskController from './taskController';
-import { saveData } from '../assets';
+import { saveData, toggleForm } from '../assets';
 
 class ProjectController {
   #todo = undefined;
   #taskController = undefined;
   #form = document.querySelector('aside form');
+  #formContainer = document.querySelector('aside .form-container');
   #activeProject = document.querySelector('.active');
   #defaultList = document.querySelector('.default-projects');
   #dynamicList = document.querySelector('.dynamic-projects');
@@ -17,6 +18,16 @@ class ProjectController {
     this.updateProjectList(this.#todo.projectList);
 
     this.#form.addEventListener('submit', this.addProjectToList);
+
+    this.#formContainer.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'BUTTON' || e.target.type !== 'button') return;
+      toggleForm(
+        this.#form,
+        document.querySelector('aside .form-container > button')
+      );
+      this.#form.elements[0].value = '';
+    });
+
     this.#defaultList.addEventListener('click', this.updateActiveProject);
     this.#dynamicList.addEventListener('click', (e) => {
       this.updateActiveProject(e);
@@ -40,11 +51,11 @@ class ProjectController {
   addProjectToList = (e) => {
     e.preventDefault();
 
-    this.#todo.addProject(new Project(e.target.elements[0].value));
+    this.#todo.addProject(new Project(this.#form.elements[0].value));
 
     this.updateProjectList(this.#todo.projectList);
 
-    e.target.elements[0].value = '';
+    this.#form.elements[0].value = '';
     saveData();
   };
 

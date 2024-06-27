@@ -49,17 +49,10 @@ export function loadData() {
   });
 }
 
-// showOrHideForm = (form, button, field, e) => {
-//   const target = e.target;
-
-//   if (target.tagName !== 'BUTTON') return;
-
-//   if (target.dataset.action) {
-//     form.classList.toggle('hidden');
-//     button.classList.toggle('hidden');
-//     field.value = '';
-//   }
-// };
+export function toggleForm(button, form) {
+  form.classList.toggle('hidden');
+  button.classList.toggle('hidden');
+}
 
 // setInputToContentSize = () => {
 //   document.querySelectorAll('.project-list input').forEach((input) => {
@@ -67,4 +60,4 @@ export function loadData() {
 //   });
 // };
 
-export default { saveData, loadData };
+export default { saveData, loadData, toggleForm };
