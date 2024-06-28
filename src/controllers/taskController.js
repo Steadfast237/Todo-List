@@ -87,6 +87,11 @@ class TaskController {
     this.updateProjectTaskList(this.#activeProject);
 
     e.target.elements[0].value = '';
+    toggleForm(
+      document.querySelector('.content .form-container > button'),
+      this.#form.elements[0],
+      this.#form
+    );
     saveData();
   };
 

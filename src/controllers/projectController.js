@@ -82,6 +82,11 @@ class ProjectController {
     this.updateProjectList(this.#todo.projectList);
 
     this.#form.elements[0].value = '';
+    toggleForm(
+      document.querySelector('aside .form-container > button'),
+      this.#form.elements[0],
+      this.#form
+    );
     saveData();
   };
 
